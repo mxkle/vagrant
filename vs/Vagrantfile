@@ -1,0 +1,26 @@
+ENV['VAGRANT_DEFAULT_PROVIDER'] = 'libvirt'
+
+Vagrant.configure("2") do |config|
+
+  config.vm.box = "debian/jessie64"
+  config.vm.synced_folder ".", "/vagrant", id: "vagrant-root", disabled: true
+  config.vm.provider "libvirt" do |lv|
+  	lv.driver = "kvm"
+  end #config.vm.provider
+  
+  (10..10).each do |i|
+	config.vm.define "vs-#{i}" do |vs|
+		vs.vm.hostname = "vs-#{i}"
+		vs.vm.network "private_network", ip: "10.0.0.#{i}" 
+	end #config.vm.define
+  end #loop
+
+  #Write public ssh key to machine with ansible
+  config.vm.provision :ansible do |ansible|
+  	ansible.playbook = "vagrant-provision.yml"
+  	## Debugging
+  	ansible.verbose =  true
+  	ansible.verbose="vvvvv"
+  end
+
+end #Vagrant.configure

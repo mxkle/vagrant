@@ -1,0 +1,17 @@
+---
+#
+# This playbook deploys your keys to the vagrant
+#
+
+- name: enable root login via ssh, using keys
+  hosts: all
+  sudo: true
+  vars:
+    localuser: "{{ lookup('ENV','USER') }}"
+    ssh_public_key_path: '~/.ssh/id_rsa.pub'
+  tasks:
+    - name: putting you authorized_key
+      authorized_key: 
+        key="{{lookup('file', '~/.ssh/id_rsa.pub')}}"
+        user='root'
+        manage_dir=yes
