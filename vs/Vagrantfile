@@ -15,7 +15,7 @@ Vagrant.configure("2") do |config|
 	end #config.vm.define
   end #loop
 
-  #Write public ssh key to machine with ansible
+  #copy local ssh key to vm with ansible
   config.vm.provision :ansible do |ansible|
   	ansible.playbook = "vagrant-provision.yml"
   	## Debugging
