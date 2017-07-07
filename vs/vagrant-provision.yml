@@ -1,13 +1,8 @@
 ---
-#
-# This playbook deploys your keys to the vagrant
-#
-
-- name: enable root login via ssh, using keys
+- name: copy local ssh keys to new vm, user root
   hosts: all
   sudo: true
   vars:
-    localuser: "{{ lookup('ENV','USER') }}"
     ssh_public_key_path: '~/.ssh/id_rsa.pub'
   tasks:
     - name: putting you authorized_key
