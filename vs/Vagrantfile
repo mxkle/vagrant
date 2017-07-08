@@ -8,7 +8,8 @@ Vagrant.configure("2") do |config|
   	lv.driver = "kvm"
   end #config.vm.provider
   #how many hosts to deploy?
-  (10..10).each do |i|
+  n = 2
+  (10..n+9).each do |i|
 	config.vm.define "vs-#{i}" do |vs|
 		vs.vm.hostname = "vs-#{i}"
 		vs.vm.network "private_network", ip: "10.0.0.#{i}" 
