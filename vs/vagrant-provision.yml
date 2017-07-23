@@ -5,7 +5,7 @@
   vars:
     ssh_public_key_path: '~/.ssh/id_rsa.pub'
   tasks:
-    - name: putting you authorized_key
+    - name: creating "authorized_key" in vm
       authorized_key: 
         key="{{lookup('file', '~/.ssh/id_rsa.pub')}}"
         user='root'

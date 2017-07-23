@@ -10,7 +10,7 @@ Vagrant.configure("2") do |config|
   #how many hosts to deploy?
   n = 2
   (10..n+9).each do |i|
-	config.vm.define "vs-#{i}" do |vs|
+	config.vm.define "#{i}" do |vs|
 		vs.vm.hostname = "vs-#{i}"
 		vs.vm.network "private_network", ip: "10.0.0.#{i}" 
 	end #config.vm.define
@@ -20,8 +20,8 @@ Vagrant.configure("2") do |config|
   config.vm.provision :ansible do |ansible|
   	ansible.playbook = "vagrant-provision.yml"
   	## Debugging
-  	ansible.verbose =  true
-  	ansible.verbose="vvvvv"
+  	#ansible.verbose =  true
+  	#ansible.verbose="vvvvv"
   end
 
 end #Vagrant.configure
