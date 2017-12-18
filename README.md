@@ -4,8 +4,6 @@ quickly install vm's with vagrant
 copy local ssh key from current user to new vm with ansible playbook
 
 these are all just test enviroments for me and i use github to save the files i need
-
-but feel free to use it :)
 # usage
 ```
 git clone git://github.com/mxkle/vagrant
